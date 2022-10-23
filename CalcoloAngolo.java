@@ -11,6 +11,9 @@ public class CalcoloAngolo {
 	private double rad1;
 	private double rad2;
 	
+	private static double g1;
+	private static double g2;
+
 	private double x1, x2, y1, y2;
 
 	final float PI_GRECO = (float)3.141592654;
@@ -163,24 +166,46 @@ public class CalcoloAngolo {
 			if(funzione == 0) {		//se seno
 				if(getGradi1() <= 180) {
 					if(getGradi1() == 90) {
+						setG1(0);
+						setG2(0);
 						return "Impossibile";
 					}
+					setG1(getGradi1());
+					setG2(getGradi2());
 					return getGradi1() + " < x < " + getGradi2();
 				}
 				else 
+				{
+					setG1(getGradi2() - 360);
+					setG2(getGradi1());
 					return Double.toString(getGradi2() - 360) + " < x < " + getGradi1();
+				}
 			}else if(funzione == 1) {		//coseno
 				if(getGradi1() <= 180) {
 					if(getGradi1() == 0)
+					{
+						setG1(0);
+						setG2(0);
 						return "Impossibile";
+					}
+					setG1(getGradi2() - 360);
+					setG2(getGradi1());
 					return Double.toString(getGradi2() - 360) + " < x < " + getGradi1();
 				}else 
+				{
+					setG1(getGradi1());
+					setG2(getGradi2());
 					return getGradi1() + " < x < " + getGradi2();
+				}
 			}else	//tang
 			{
 				if(getGradi1() < 90 || (getGradi1() >= 180 && getGradi1() < 270)) {
+					setG1(getGradi1());
+					setG2(90);
 					return getGradi1() + " < x < 90.0";
 				}else {
+					setG1(getGradi1());
+					setG2(270);
 					return getGradi1() + " < x < 270.0";
 				}
 			}
@@ -188,32 +213,62 @@ public class CalcoloAngolo {
 		}else if(segno == 1) {	//minore
 			if(funzione == 0) {		//seno
 				if(getGradi1() <= 180)
+				{
+					setG1(getGradi2());
+					setG2(getGradi1() + 360);
 					return getGradi2() + " < x < " + Double.toString(getGradi1() + 360);
+				}
 				else {
 					if(getGradi1() == 270)
+					{
+						setG1(0);
+						setG2(0);
 						return "Impossibile";
+					}
+					setG1(getGradi1());
+					setG2(getGradi2());
 					return getGradi1() + " < x < " + getGradi2();
 				}
 			
 			}else if(funzione == 1) {		//coseno
 				if(getGradi1() <= 180 && getGradi1() != 0) {
 					if(getGradi1() == 180)
+					{
+						setG1(0);
+						setG2(0);
 						return "Impossibile";
+					}
+					setG1(getGradi1());
+					setG2(getGradi2());
 					return getGradi1() + " < x < " + getGradi2();
 				}
 				else 
+				{
+					setG1(getGradi2());
+					setG2(getGradi1() + 360);
 					return getGradi2() + " < x < " + Double.toString(getGradi1() + 360);
+				}
 			}else {		//tan
 				if(getGradi1() < 90 || (getGradi1() >= 180 && getGradi1() < 270)) {
+					setG1(90);
+					setG2(getGradi2());
 					return "90.0 < x < " + getGradi2();
 				}else {
+					setG1(90);
+					setG2(getGradi1());
 					return "90.0 < x < " + getGradi1();
 				}
 			}
 		}else {		//uguale
 			if(getGradi1() != getGradi2())
+			{
+				setG1(0);
+				setG2(0);
 				return getGradi1() + " ∧ " + getGradi2();
+			}
 			else {
+				setG1(0);
+				setG2(0);
 				return Double.toString(getGradi1());
 			}
 		}
@@ -278,5 +333,21 @@ public class CalcoloAngolo {
 				return Double.toString(getRadianti1());
 			}
 		}
+	}
+	
+	public static double getGradoArco1() {
+		return g1;
+	}
+
+	public void setG1(double g1) {
+		CalcoloAngolo.g1 = g1;
+	}
+
+	public static double getGradoArco2() {
+		return g2;
+	}
+
+	public void setG2(double g2) {
+		CalcoloAngolo.g2 = g2;
 	}
 }
