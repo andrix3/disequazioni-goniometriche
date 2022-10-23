@@ -136,18 +136,8 @@ public class Frame {
 				x2 = ca.getX2();
 				y2 = ca.getY2();
 				//label2.setText(ca.get);
-				if(op == 0) {
-					
-				}
-				
-				if(op == 1) {
-					
-				}
-				
-				if(op == 2) {
-					label4.setText(ca.getGradi1() + " ∧ " + ca.getGradi2());
-					label6.setText(ca.getRadianti1() + " ∧ " + ca.getRadianti2());
-				}
+				label4.setText(ca.getGradiString());
+				label6.setText(ca.getRadiantiString());
 				pulito = true;
 				//CartesianPlane pl = new CartesianPlane();
 				//plane = pl;
