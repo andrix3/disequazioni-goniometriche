@@ -61,10 +61,10 @@ public class CartesianPlane extends JPanel
 				int x = Frame.getOp();
 				switch(x) {
 				case 0:
-					g.drawArc(250, 150, 100, 100, (int)CalcoloAngolo.getGradi1(), 180 -  2 * (int)CalcoloAngolo.getGradi1());
+					g.drawArc(250, 150, 100, 100, (int)CalcoloAngolo.getGradoArco1(), (int)CalcoloAngolo.getGradoArco2() - (int)CalcoloAngolo.getGradoArco1());
 					break;
 				case 1: 
-					g.drawArc(250, 150, 100, 100, (int)CalcoloAngolo.getGradi2(), 360 - 2 * (int)CalcoloAngolo.getGradi1());
+					g.drawArc(250, 150, 100, 100, (int)CalcoloAngolo.getGradoArco1(), (int)CalcoloAngolo.getGradoArco2() - (int)CalcoloAngolo.getGradoArco1());	//180 + 2 * (int)
 					break;
 				case 2: 
 					break;
