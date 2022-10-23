@@ -1,3 +1,4 @@
+package disequazioni;
 
 public class CalcoloAngolo {
 	private int segno;	//0: >;  1: <;  2: =
@@ -78,10 +79,10 @@ public class CalcoloAngolo {
 	}
 	
 	public static double getGradi1() {
-		return Math.round(gradi1*100.0)/100.0;
+		return Math.round(gradi1 * 100.0) / 100.0;
 	}
 	public static double getGradi2() {
-		return Math.round(gradi2*100.0)/100.0;
+		return Math.round(gradi2 * 100.0) / 100.0;
 	}
 	
 	private void ordinaGradi() {
@@ -108,11 +109,15 @@ public class CalcoloAngolo {
 	}
 	
 	public double getRadianti1() {
-		return Math.round(rad1*100.0)/100.0;
+		return Math.round(rad1 * 100.0) / 100.0;
 	}
 	
 	public double getRadianti2() {
-		return Math.round(rad2*100.0)/100.0;
+		return Math.round(rad2 * 100.0) / 100.0;
+	}
+	
+	private double getRadianti(double rad) {
+		return Math.round(rad * 100.0) / 100.0;
 	}
 	
 	public void setX1(double rad, int f) {
@@ -141,85 +146,70 @@ public class CalcoloAngolo {
 	}
 	
 	public double getX1() {
-		//double num = 12.5249;
-	    return Math.round(x1*100.0)/100.0;
-		//return x1;
+	    return Math.round(x1 * 100.0) / 100.0;
 	}
 	public double getX2() {
-		return Math.round(x2*100.0)/100.0;
+		return Math.round(x2 * 100.0) / 100.0;
 	}
 	public double getY1() {
-		return Math.round(y1*100.0)/100.0;
+		return Math.round(y1 * 100.0) / 100.0;
 	}
 	public double getY2() {
-		return Math.round(y2*100.0)/100.0;
+		return Math.round(y2 * 100.0) / 100.0;
 	}
 	
 	public String getGradiString() {
 		if(segno == 0) {	//maggiore
 			if(funzione == 0) {		//se seno
-				if(getGradi1() != getGradi2())
-					if(getGradi1() <= 180)
-						return getGradi1() + " < x < " + getGradi2();
-					else 
-						return Double.toString(getGradi2() - 360) + " < x < " + getGradi1();
-				else {
-					if(getGradi1() != 90)
-						return Double.toString(getGradi1());
-					else {
+				if(getGradi1() <= 180) {
+					if(getGradi1() == 90) {
 						return "Impossibile";
 					}
+					return getGradi1() + " < x < " + getGradi2();
 				}
-			}else if(funzione == 1)		//coseno
-			{
-				if(getGradi1() != getGradi2())
-					if(getGradi1() <= 180)
-						return Double.toString(getGradi2() - 360) + " < x < " + getGradi1();
-					else 
-						return getGradi1() + " < x < " + getGradi2();
-				else {
-					if(getGradi1() != 0)
-						return Double.toString(getGradi1());
-					else {
+				else 
+					return Double.toString(getGradi2() - 360) + " < x < " + getGradi1();
+			}else if(funzione == 1) {		//coseno
+				if(getGradi1() <= 180) {
+					if(getGradi1() == 0)
 						return "Impossibile";
-					}
-				}
+					return Double.toString(getGradi2() - 360) + " < x < " + getGradi1();
+				}else 
+					return getGradi1() + " < x < " + getGradi2();
 			}else	//tang
 			{
-				
+				if(getGradi1() < 90 || (getGradi1() >= 180 && getGradi1() < 270)) {
+					return getGradi1() + " < x < 90.0";
+				}else {
+					return getGradi1() + " < x < 270.0";
+				}
 			}
 			
 		}else if(segno == 1) {	//minore
 			if(funzione == 0) {		//seno
-				if(getGradi1() != getGradi2())
-					if(getGradi1() <= 180)
-						return getGradi2() + " < x < " + Double.toString(getGradi1() + 360);
-					else 
-						return getGradi1() + " < x < " + getGradi2();
+				if(getGradi1() <= 180)
+					return getGradi2() + " < x < " + Double.toString(getGradi1() + 360);
 				else {
-					if(getGradi1() != 270)
-						return Double.toString(getGradi1());
-					else {
+					if(getGradi1() == 270)
 						return "Impossibile";
-					}
+					return getGradi1() + " < x < " + getGradi2();
 				}
-			}else if(funzione == 1) {		//coseno
-				if(getGradi1() != getGradi2())
-					if(getGradi1() <= 180)
-						return getGradi1() + " < x < " + getGradi2();
-					else 
-						return getGradi2() + " < x < " + Double.toString(getGradi1() + 360);
-				else {
-					if(getGradi1() != 180)
-						return Double.toString(getGradi1());
-					else {
-						return "Impossibile";
-					}
-				}
-			}else {		//tan
-				
-			}
 			
+			}else if(funzione == 1) {		//coseno
+				if(getGradi1() <= 180 && getGradi1() != 0) {
+					if(getGradi1() == 180)
+						return "Impossibile";
+					return getGradi1() + " < x < " + getGradi2();
+				}
+				else 
+					return getGradi2() + " < x < " + Double.toString(getGradi1() + 360);
+			}else {		//tan
+				if(getGradi1() < 90 || (getGradi1() >= 180 && getGradi1() < 270)) {
+					return "90.0 < x < " + getGradi2();
+				}else {
+					return "90.0 < x < " + getGradi1();
+				}
+			}
 		}else {		//uguale
 			if(getGradi1() != getGradi2())
 				return getGradi1() + " ∧ " + getGradi2();
@@ -227,7 +217,66 @@ public class CalcoloAngolo {
 				return Double.toString(getGradi1());
 			}
 		}
-		
-		return "";
+	}
+	
+	public String getRadiantiString() {
+		if(segno == 0) {	//maggiore
+			if(funzione == 0) {		//se seno
+				if(getRadianti1() <= 3.14) {
+					if(getRadianti1() == 1.57) {
+						return "Impossibile";
+					}
+					return getRadianti1() + " < x < " + getRadianti2();
+				}
+				else 
+					return getRadianti(getRadianti2() - 6.2) + " < x < " + getRadianti1();
+			}else if(funzione == 1) {		//coseno
+				if(getRadianti1() <= 3.14) {
+					if(getRadianti1() == 0)
+						return "Impossibile";
+					return getRadianti(getRadianti2() - 6.2) + " < x < " + getRadianti1();
+				}else 
+					return getRadianti1() + " < x < " + getRadianti2();
+			}else	//tang
+			{
+				if(getRadianti1() < 1.57 || (getRadianti1() >= 3.14 && getRadianti1() < 4.71)) {
+					return getRadianti1() + " < x < 1.5";
+				}else {
+					return getRadianti1() + " < x < 4.7";
+				}
+			}
+			
+		}else if(segno == 1) {	//minore
+			if(funzione == 0) {		//seno
+				if(getRadianti1() <= 3.14)
+					return getRadianti2() + " < x < " + getRadianti(getRadianti1() + 6.2);
+				else {
+					if(getRadianti1() == 4.71)
+						return "Impossibile";
+					return getRadianti1() + " < x < " + getRadianti2();
+				}
+			
+			}else if(funzione == 1) {		//coseno
+				if(getRadianti1() <= 3.14 && getRadianti1() != 0) {
+					if(getRadianti1() == 3.14)
+						return "Impossibile";
+					return getRadianti1() + " < x < " + getRadianti2();
+				}
+				else 
+					return getRadianti2() + " < x < " + getRadianti(getRadianti1() + 6.2);
+			}else {		//tan
+				if(getRadianti1() < 1.57 || (getRadianti1() >= 3.14 && getRadianti1() < 4.71)) {
+					return "1.5 < x < " + getRadianti2();
+				}else {
+					return "1.5 < x < " + getRadianti1();
+				}
+			}
+		}else {		//uguale
+			if(getRadianti1() != getRadianti2())
+				return getRadianti1() + " ∧ " + getRadianti2();
+			else {
+				return Double.toString(getRadianti1());
+			}
+		}
 	}
 }
