@@ -32,8 +32,10 @@ public class CartesianPlane extends JPanel
 		
 		if(Frame.isPulito()) {
 			if(Frame.getFunz() == 1) {
-				g.drawLine((int)300, 200, (int)(300 + (double)(50 * Frame.getX1())), (int)(200 + (double)(50 * Frame.getY1())));
-				g.drawLine((int)300, 200, (int)(300 + (double)(50 * Frame.getX1())), (int)(200 + (double)(50 * Frame.getY2())));
+				if(!CalcoloAngolo.isFuori()) {
+					g.drawLine((int)300, 200, (int)(300 + (double)(50 * Frame.getX1())), (int)(200 + (double)(50 * Frame.getY1())));
+					g.drawLine((int)300, 200, (int)(300 + (double)(50 * Frame.getX1())), (int)(200 + (double)(50 * Frame.getY2())));
+				}
 				g.setColor(Color.red);
 				g.drawLine((int)((int)(300 + (double)(50 *  Frame.getX1()))), 0, (int)(300 + (double)(50 * Frame.getX1())), 400);
 				
@@ -55,8 +57,10 @@ public class CartesianPlane extends JPanel
 			else if(Frame.getFunz() == 0) {
 				//System.out.println("41: " + (int)(200 - (double)(50 * Frame.getY1())));
 				//System.out.println("41: " + (int)(200 - (double)(50 * Frame.getY1())));
-				g.drawLine((int)300, 200, (int)(300 + (double)(50 * Frame.getX1())), (int)(200 - (double)(50 * Frame.getY1())));
-				g.drawLine((int)300, 200, (int)(300 + (double)(50 * Frame.getX2())), (int)(200 - (double)(50 * Frame.getY1())));
+				if(!CalcoloAngolo.isFuori()) {
+					g.drawLine((int)300, 200, (int)(300 + (double)(50 * Frame.getX1())), (int)(200 - (double)(50 * Frame.getY1())));
+					g.drawLine((int)300, 200, (int)(300 + (double)(50 * Frame.getX2())), (int)(200 - (double)(50 * Frame.getY1())));
+				}
 				g.setColor(Color.red);
 				g.drawLine(0, (int)(200 - (double)(50 * Frame.getY1())), 600, (int)(200 - (double)(50 * Frame.getY1())));
 				
@@ -81,10 +85,10 @@ public class CartesianPlane extends JPanel
 				g.drawLine((int)(300 + (double)(50 * Frame.getX1())), (int)(200 - (double)(50 * Frame.getY1())), (int)(300 + (double)(50 * Frame.getX2())), (int)(200 - (double)(50 * Frame.getY2())));
 			}
 			
-			System.out.println("x1: " + Frame.getX1());
+			/*System.out.println("x1: " + Frame.getX1());
 			System.out.println("y1: " + Frame.getY1());
 			System.out.println("x2: " + Frame.getX2());
-			System.out.println("y2: " + Frame.getY2()); 
+			System.out.println("y2: " + Frame.getY2()); */
 		}
 		
 		super.setVisible(true);
