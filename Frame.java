@@ -1,8 +1,12 @@
+package disequazioni2;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+
+import disequazioni.*;
 
 public class Frame {
 	
@@ -27,6 +31,25 @@ public class Frame {
 	
 	private static double x1, x2, y1, y2;
 	
+	private static int segno;
+	private static int funz;
+	
+	public static int getSegno() {
+		return segno;
+	}
+
+	public static void setSegno(int segno) {
+		Frame.segno = segno;
+	}
+
+	public static int getFunz() {
+		return funz;
+	}
+
+	public static void setFunz(int funz) {
+		Frame.funz = funz;
+	}
+
 	public static double getX1() {
 		return x1;
 	}
@@ -136,21 +159,11 @@ public class Frame {
 				x2 = ca.getX2();
 				y2 = ca.getY2();
 				//label2.setText(ca.get);
-				if(op == 0) {
-					
-				}
-				
-				if(op == 1) {
-					
-				}
-				
-				if(op == 2) {
-					label4.setText(ca.getGradi1() + " ∧ " + ca.getGradi2());
-					label6.setText(ca.getRadianti1() + " ∧ " + ca.getRadianti2());
-				}
+				label4.setText(ca.getGradiString());
+				label6.setText(ca.getRadiantiString());
+				setSegno(op);
+				setFunz(funzione);
 				pulito = true;
-				//CartesianPlane pl = new CartesianPlane();
-				//plane = pl;
 			}
 		};
 		button.addActionListener(but);
