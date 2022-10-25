@@ -26,67 +26,69 @@ public class Frame {
 	
 	private CalcoloAngolo ca = new CalcoloAngolo();
 	
-	private static double x1, x2, y1, y2;
+	private double x1, x2, y1, y2;
 	
-	private static int segno;
-	private static int funz;
+	private int segno;
+	private int funz;
 	
-	private static boolean pulito = false;
+	private boolean pulito = false;
 
 	private String valore;
-	private static int op;
-
-	private static int funzione;
 	
-	public static int getSegno() {
+	//static
+	private int op;
+	private int funzione;
+	
+	public int getSegno() {
 		return segno;
 	}
 
-	public static void setSegno(int segno) {
-		Frame.segno = segno;
+	public void setSegno(int segno) {
+		this.segno = segno;
 	}
 
-	public static int getFunz() {
+	public int getFunz() {
 		return funz;
 	}
 
-	public static void setFunz(int funz) {
-		Frame.funz = funz;
+	public void setFunz(int funz) {
+		this.funz = funz;
 	}
 
-	public static double getX1() {
+	public double getX1() {
 		return x1;
 	}
 
-	public static double getX2() {
+	public double getX2() {
 		return x2;
 	}
 
-	public static double getY1() {
+	public double getY1() {
 		return y1;
 	}
 
-	public static double getY2() {
+	public double getY2() {
 		return y2;
 	}
 
 	
-	public static boolean isPulito() {
+	public boolean isPulito() {
 		return pulito;
 	}
 
 	
-	public static int getOp() {
+	public int getOp() {
 		return op;
 	}
 
 	
-	public static int getFunzione() {
+	public int getFunzione() {
 		return funzione;
 	}
 
 	public Frame(){
 		// panel scelta funzione
+		plane.setProcedo(true);
 		initFrame();
 		initLabel();
 		initButton();
@@ -161,9 +163,11 @@ public class Frame {
 				//label2.setText(ca.get);
 				label4.setText(ca.getGradiString());
 				label6.setText(ca.getRadiantiString());
-				setSegno(op);
-				setFunz(funzione);
-				pulito = true;
+				segno = op;
+				funz = funzione;
+				plane.setAll(segno, funz, pulito, ca.getX1(), ca.getX2(), ca.getY1(), ca.getY2(), ca.getGradoArco1(), ca.getGradi2(), ca.isFuori());
+				plane.setProcedo(true);
+				jf.repaint();
 			}
 		};
 		button.addActionListener(but);
@@ -177,6 +181,7 @@ public class Frame {
 				label6.setText("");
 				System.out.println("pulito");
 				pulito = false;
+				plane.setProcedo(pulito);
 			}
 			
 		};

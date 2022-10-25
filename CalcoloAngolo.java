@@ -5,19 +5,19 @@ public class CalcoloAngolo {
 	
 	private double esprVal;
 	
-	private static double gradi1;
-	private static double gradi2;
+	private double gradi1;
+	private double gradi2;
 	private double rad1;
 	private double rad2;
 	
-	private static double g1;
-	private static double g2;
+	private double g1;
+	private double g2;
 
 	private double x1, x2, y1, y2;
 
-	final float PI_GRECO = (float)3.141592654;
+	private final float PI_GRECO = (float)3.141592654;
 	
-	static double fuori = -9999;		//-9999: ok; altrimenti no: prende il valore dato in input
+	private double fuori = -9999;		//-9999: ok; altrimenti no: prende il valore dato in input
 	
 	
 	
@@ -96,10 +96,10 @@ public class CalcoloAngolo {
 		
 	}
 	
-	public static double getGradi1() {
+	public double getGradi1() {
 		return Math.round(gradi1 * 100.0) / 100.0;
 	}
-	public static double getGradi2() {
+	public double getGradi2() {
 		return Math.round(gradi2 * 100.0) / 100.0;
 	}
 	
@@ -435,23 +435,23 @@ public class CalcoloAngolo {
 		}
 	}
 	
-	public static double getGradoArco1() {
+	public double getGradoArco1() {
 		return g1;
 	}
 
 	public void setG1(double g1) {
-		CalcoloAngolo.g1 = g1;
+		this.g1 = g1;
 	}
 
-	public static double getGradoArco2() {
+	public double getGradoArco2() {
 		return g2;
 	}
 
 	public void setG2(double g2) {
-		CalcoloAngolo.g2 = g2;
+		this.g2 = g2;
 	}
 	
-	public static boolean isFuori() {
+	public boolean isFuori() {
 		if(fuori == -9999) {
 			return false;
 		}else {
